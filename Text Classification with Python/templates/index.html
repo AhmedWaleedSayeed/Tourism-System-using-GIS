@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="card">
+  <div class="card-body">
+      {%with messages = get_flashed_messages()%}
+
+    {%if messages%}
+
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissable" role="alert">
+
+     <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+
+         <span aria-hidden="true">&times;</span>
+
+     </button>
+        {{message}}
+
+
+    </div>
+
+
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+      <form method="post" action="{{ url_for('insert') }}">
+
+
+               <div class="form-group">
+
+
+                  <label>Name:</label>
+                  <input type="text" class="form-control" name="name1" >
+
+
+               </div>
+
+
+                <div class="form-group">
+
+
+                  <label>Email:</label>
+                  <input type="text" class="form-control" name="email1">
+
+
+               </div>
+
+
+                <div class="form-group">
+
+
+                  <label>Phone:</label>
+                  <input type="text" class="form-control" name="phone1" >
+                <div class="form-group">
+                <label>comment:</label>
+                <textarea rows="10" cols="40" class="form-control" type="text" name="text1" ></textarea>
+                </div>
+
+               </div>
+          <button class="btn btn-primary" type="submit">Insert Your Data </button>
+
+</form>
+      <br>
+       <a class="btn btn-primary" href="http://127.0.0.1/travel/">Back to Main Website</a>
+
+      <br><br>
+      <label>If You want to see Comment Prediction Rate</label>
+      <br>
+      <label>Press Here</label>
+<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add Comment Here</button>
+
+<div id="myModal" class="modal fade" role="dialog">
+
+
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+
+            <h4 class="modal-title">Insert Comment</h4>
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+<form method="post" action="/predict">
+    <div class="form-group">
+<input type="text" class="form-control" name="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="phone" placeholder="Phone">
+    </div>
+    <div class="form-group">
+        <textarea rows="10" cols="80" class="form-control" type="text" name="text"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Insert Comment to Predict Your Rate</button>
+</form>
+              </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
